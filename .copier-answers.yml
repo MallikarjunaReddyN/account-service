@@ -1,0 +1,20 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+CI: 'Yes'
+CI_type: Azure Pipelines
+_commit: 30dafdc
+_src_path: https://github.com/MallikarjunaReddyN/copier-springboot.git
+aks: 'No'
+container_registery: DockerHub
+created_by: Malli
+docker: 'Yes'
+entity: Account
+group_id: com.malli
+is_db_required: 'No'
+project: Gradle
+project_description: This is a Spring Boot Account Microservice
+project_name: Account Service
+project_package: accountservice
+sca: 'Yes'
+sca_type: SonarCloud
+server_port: 2306
+version: 0.0.1

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: account-service
+  labels:
+    app: accountservice
+spec:
+  type: ClusterIP
+  ports:
+    - name: app-port
+      port: 2306
+      targetPort: 2306
+      protocol: TCP
+  selector:
+     app: accountservice

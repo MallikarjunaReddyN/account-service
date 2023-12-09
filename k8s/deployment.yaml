@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-service
+  labels:
+    app: accountservice
+spec:
+  replicas: 2
+  strategy:
+     type: RollingUpdate
+  selector:
+    matchLabels:
+      app: accountservice
+  template:
+    metadata:
+      labels:
+        app: accountservice
+    spec:
+      containers:
+        - name: accountservice
+          image: ##REGISTRY_USERNAME##/account-service:##TAG##
+          livenessProbe:
+            httpGet:
+              port: 2306
+              path: /account-service/v1/actuator/health/liveness
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              port: 2306
+              path: /account-service/v1/actuator/health/readiness
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          ports:
+            - containerPort: 2306

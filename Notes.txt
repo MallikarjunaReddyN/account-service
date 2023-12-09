@@ -1,0 +1,3 @@
+Note: Please replace ##YOUR_ORGANIZATION## placeholder with your actaul organization in sonar-project.properties
+    
+    Note: Please replace ##REGISTERY_USERNAME## placeholder with your actual dockerhub username in pom.xml and k8s/deployment.yaml
