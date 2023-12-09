@@ -67,6 +67,6 @@ jib {
         image = 'amazoncorretto:21-alpine'
     }
     to {
-        image = 'registry.hub.docker.com/##REGISTERY_USERNAME##/' + project.name
+        image = 'registry.hub.docker.com/mallireddy1998/' + project.name
     }
 }
