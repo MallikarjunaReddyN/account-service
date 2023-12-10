@@ -50,7 +50,7 @@ pipeline {
                 dir("${env.WORKSPACE}/k8s"){
                     sh "pwd"
                     sh "sed -e 's/##TAG##/$BUILD_NUMBER/g' deployment.yaml"
-                    sh "cat k8s/deployment.yaml"
+                    sh "cat deployment.yaml"
                 }
 
             }
