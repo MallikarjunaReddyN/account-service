@@ -8,8 +8,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo "pulling .." + env.BRANCH_NAME
+                echo "pulling .. " + env.BRANCH_NAME
                 echo "Environment is : ${ENV_NAME}"
+                echo "Custom Environment variable: " + env.VARIABLE1
             }
         }
         stage('Build') {
