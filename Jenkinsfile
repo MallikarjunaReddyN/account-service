@@ -11,7 +11,6 @@ pipeline {
             steps {
                 echo "pulling .. " + env.BRANCH_NAME
                 echo "Environment is : ${ENV_NAME}"
-                echo "Custom Environment variable: " + env.VARIABLE1
             }
         }
         stage('Test & Build') {
@@ -29,7 +28,7 @@ pipeline {
         }
         stage("Quality Gate") {
             steps {
-                timeout(time: 300, unit: 'SECONDS') {
+                timeout(time: 5, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
             }
