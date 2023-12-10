@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Branch & Environment Info') {
             steps {
                 echo "pulling .. " + env.BRANCH_NAME
                 echo "Environment is : ${ENV_NAME}"
@@ -42,6 +42,13 @@ pipeline {
                         sh "./gradlew jib -Djib.to.auth.username=$USERNAME -Djib.to.auth.password=$PASSWORD -Djib.to.tags=$BUILD_NUMBER"
                     }
                 }
+            }
+        }
+
+        stage('Update Image tag') {
+            steps {
+                sh "sed -i 's/##TAG##/$BUILD_NUMBER/g' k8s/deployment.yaml"
+                cat k8s/deployment.yaml
             }
         }
 
