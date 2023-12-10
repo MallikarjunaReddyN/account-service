@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         ENV_NAME = getEnvName(env.BRANCH_NAME)
+        scannerHome = tool 'Sonar Scanner'
     }
 
     stages {
@@ -22,7 +23,7 @@ pipeline {
         stage("SonarQube analysis") {
             steps {
                 withSonarQubeEnv('sonarcloud') {
-                    sh './gradlew clean build sonar-scanner -Dskip.tests=true -Dproject.settings=sonar-project.properties'
+                    sh './gradlew clean build ${scannerHome}/bin/sonar-scanner -Dskip.tests=true -Dproject.settings=sonar-project.properties'
                 }
             }
         }
