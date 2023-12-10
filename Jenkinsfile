@@ -47,7 +47,7 @@ pipeline {
 
         stage('Update Image tag') {
             steps {
-                sed -i 's/##TAG##/$BUILD_NUMBER/g' k8s/deployment.yaml
+                sh "sed -i s/##TAG##/$BUILD_NUMBER/ k8s/deployment.yaml"
                 cat k8s/deployment.yaml
             }
         }
