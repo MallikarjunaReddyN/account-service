@@ -23,7 +23,7 @@ pipeline {
         stage("SonarQube analysis") {
             steps {
                 withSonarQubeEnv('sonarcloud') {
-                    sh './gradlew clean build ${scannerHome}/bin/sonar-scanner -Dskip.tests=true -Dproject.settings=sonar-project.properties'
+                    sh '${scannerHome}/bin/sonar-scanner'
                 }
             }
         }
