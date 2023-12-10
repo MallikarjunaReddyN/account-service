@@ -22,7 +22,7 @@ pipeline {
         stage("SonarQube analysis") {
             steps {
                 withSonarQubeEnv('sonarcloud') {
-                    sh './gradlew sonar'
+                    sh './gradlew clean build sonar -x test'
                 }
             }
         }
