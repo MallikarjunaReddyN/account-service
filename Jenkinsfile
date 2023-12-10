@@ -11,6 +11,7 @@ pipeline {
             steps {
                 echo "pulling .. " + env.BRANCH_NAME
                 echo "Environment is : ${ENV_NAME}"
+                echo "Commit id : " + env.GIT_COMMIT
             }
         }
         stage('Test & Build') {
@@ -37,7 +38,7 @@ pipeline {
         stage('Docker Build & Push') {
             when {
                 expression {
-                    return $ENV_NAME != null;
+                    return ${ENV_NAME} != null;
                 }
             }
             steps {
@@ -53,7 +54,7 @@ pipeline {
         stage('Update Image tag') {
             when {
                expression {
-                    return $ENV_NAME != null;
+                    return ${ENV_NAME} != null;
                 }
            }
             steps {
@@ -68,7 +69,7 @@ pipeline {
         stage('K8S Deploy') {
         when {
             expression {
-                return $ENV_NAME != null;
+                return ${ENV_NAME} != null;
             }
         }
             steps {
