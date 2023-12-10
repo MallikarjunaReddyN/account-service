@@ -35,6 +35,11 @@ pipeline {
         }
 
         stage('Docker Build & Push') {
+            when {
+                expression {
+                    return $ENV_NAME != null;
+                }
+            }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'registry-credentials',
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -46,6 +51,11 @@ pipeline {
         }
 
         stage('Update Image tag') {
+            when {
+               expression {
+                    return $ENV_NAME != null;
+                }
+           }
             steps {
                 dir("${env.WORKSPACE}/k8s") {
                     sh "sed -ie 's/##TAG##/$BUILD_NUMBER/g' deployment.yaml"
@@ -56,6 +66,11 @@ pipeline {
         }
 
         stage('K8S Deploy') {
+        when {
+            expression {
+                return $ENV_NAME != null;
+            }
+        }
             steps {
                 script {
                     dir("${env.WORKSPACE}/k8s") {
