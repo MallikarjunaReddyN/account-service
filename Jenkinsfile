@@ -59,7 +59,6 @@ pipeline {
             steps {
                 script {
                     dir("${env.WORKSPACE}/k8s") {
-                        sh "cat deployment.yaml"
                         sh "/Users/mdireddy/.jenkins/kubectl config use-context minikube"
                         sh "/Users/mdireddy/.jenkins/kubectl apply -f . -n default"
                         //kubernetesDeploy(configs: "deployment.yaml", "service.yaml")

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: accountservice
-          image: ##REGISTRY_USERNAME##/account-service:##TAG##
+          image: mallireddy1998/account-service:##TAG##
           livenessProbe:
             httpGet:
               port: 2306
