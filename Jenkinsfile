@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "pulling .." + env.BRANCH_NAME
-                echo "Environment" +$ENV_NAME
+                echo "Environment is : ${ENV_NAME}"
                 git "https://github.com/MallikarjunaReddyN/account-service.git"
             }
         }
