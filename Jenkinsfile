@@ -47,8 +47,7 @@ pipeline {
 
         stage('Update Image tag') {
             steps {
-                dir("${env.WORKSPACE}/k8s"){
-                    sh "pwd"
+                dir("${env.WORKSPACE}/k8s") {
                     sh "sed -ie 's/##TAG##/$BUILD_NUMBER/g' deployment.yaml"
                     sh "cat deployment.yaml"
                 }
@@ -56,15 +55,16 @@ pipeline {
             }
         }
 
-        //   stage('K8S Deploy') {
-        //    steps {
-        //     script {
-        //      withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'K8S', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-        //       sh('kubectl apply -f jenkins-aks-deploy-from-acr.yaml')
-        //      }
-        //     }
-        //    }
-        //   }
+        stage('K8S Deploy') {
+            steps {
+                script {
+                    dir("${env.WORKSPACE}/k8s") {
+                        sh "kubectl config use-context minikube"
+                        sh "kubectl apply -f . -n default"
+                    }
+                }
+            }
+        }
     }
 }
 
