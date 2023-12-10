@@ -13,9 +13,24 @@ pipeline {
                 echo "Custom Environment variable: " + env.VARIABLE1
             }
         }
-        stage('Build') {
+        stage('Test & Build') {
             steps {
                 sh "./gradlew clean build"
+            }
+        }
+
+        stage("SonarQube analysis") {
+            steps {
+                withSonarQubeEnv('sonarcloud') {
+                    sh './gradlew sonar'
+                }
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 300, unit: 'SECONDS') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
 
@@ -43,7 +58,7 @@ pipeline {
 }
 
 def getEnvName(branchName) {
-    if(branchName.equals("dev")) {
+    if (branchName.equals("dev")) {
         return "dev";
     } else if (branchName.equals("main")) {
         return "qa";
