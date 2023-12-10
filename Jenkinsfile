@@ -49,7 +49,7 @@ pipeline {
             steps {
                 sh "ls -a"
                 sh "pwd"
-                sh "cd k8s/"
+                sh "cd k8s"
                 sh "pwd"
                 sh "sed -i s/##TAG##/$BUILD_NUMBER/ deployment.yaml"
                 cat k8s/deployment.yaml
