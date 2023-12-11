@@ -10,7 +10,7 @@ pipeline {
         stage('Branch & Environment Info') {
             steps {
                 echo "pulling .. " + env.BRANCH_NAME
-                echo "Environment is : ${ENV_NAME}"
+                echo "Environment is : env.ENV_NAME"
                 echo "Commit id : " + env.GIT_COMMIT
             }
         }
