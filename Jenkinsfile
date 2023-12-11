@@ -105,11 +105,11 @@ def getEnvName(branchName) {
 
 def getContext(branchName) {
     if (branchName.equals("dev")) {
-        return "default";
+        return "minikube";
     } else if (branchName.equals("main")) {
-        return "default";
+        return "minikube";
     } else if (branchName.contains("releases/release")) {
-        return "default";
+        return "minikube";
     } else {
         return null;
     }
