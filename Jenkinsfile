@@ -38,7 +38,7 @@ pipeline {
         stage('Docker Build & Push') {
             when {
                 expression {
-                    return env.ENV_NAME != null;
+                    return env.ENV_NAME != 'null';
                 }
             }
             steps {
@@ -54,7 +54,7 @@ pipeline {
         stage('Update Image tag') {
             when {
                 expression {
-                    return env.ENV_NAME != null;
+                    return env.ENV_NAME != 'null';
                 }
             }
             steps {
@@ -69,7 +69,7 @@ pipeline {
         stage('K8S Deploy') {
             when {
                 expression {
-                    return env.ENV_NAME != null;
+                    return env.ENV_NAME != 'null';
                 }
             }
             steps {
