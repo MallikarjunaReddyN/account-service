@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         ENV_NAME = getEnvName(env.BRANCH_NAME)
-        GIT_SHA_SHORT = 'git rev-parse --short=8 ${GIT_COMMIT}''
+        GIT_SHA_SHORT = 'git rev-parse --short=8 ${GIT_COMMIT}'
         scannerHome = tool 'Sonar Scanner'
     }
 
