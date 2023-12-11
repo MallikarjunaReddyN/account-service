@@ -8,7 +8,7 @@ pipeline {
     }
 
     stages {
-        stage('Branch & Environment Info') {
+        stage('Commit, Branch & Environment Info') {
             steps {
                 echo "pulling .. " + env.BRANCH_NAME
                 echo "Environment is : "+ env.ENV_NAME
@@ -47,7 +47,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'registry-credentials',
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     script {
-                        sh "./gradlew jib -Djib.to.auth.username=$USERNAME -Djib.to.auth.password=$PASSWORD -Djib.to.tags=$BUILD_NUMBER"
+                        sh "./gradlew jib -Djib.to.auth.username=$USERNAME -Djib.to.auth.password=$PASSWORD -Djib.to.tags=${GIT_SHA_SHORT}"
                     }
                 }
             }
