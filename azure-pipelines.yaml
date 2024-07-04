@@ -52,21 +52,21 @@ stages:
           javaHomeOption: 'JDKVersion'
           sonarQubeRunAnalysis: false
           spotBugsAnalysis: false
-      - task: SonarCloudPrepare@1
-        displayName: Sonar Scan Prepare
-        inputs:
-          SonarCloud: 'sonarcloud' # 'sonarcloud' is service connection name
-          organization: 'mallikarjunareddyn'
-          scannerMode: 'CLI'
-          configMode: 'file'
-      - task: SonarCloudAnalyze@1
-        displayName: Sonar Scan Analyze
-        inputs:
-          jdkversion: 'JAVA_HOME_21_X64'
-      - task: SonarCloudPublish@1
-        displayName: Sonar Publish
-        inputs:
-          pollingTimeoutSec: '300'
+      # - task: SonarCloudPrepare@1
+      #   displayName: Sonar Scan Prepare
+      #   inputs:
+      #     SonarCloud: 'sonarcloud' # 'sonarcloud' is service connection name
+      #     organization: 'mallikarjunareddyn'
+      #     scannerMode: 'CLI'
+      #     configMode: 'file'
+      # - task: SonarCloudAnalyze@1
+      #   displayName: Sonar Scan Analyze
+      #   inputs:
+      #     jdkversion: 'JAVA_HOME_21_X64'
+      # - task: SonarCloudPublish@1
+      #   displayName: Sonar Publish
+      #   inputs:
+      #     pollingTimeoutSec: '300'
       - task: Gradle@3
         displayName: Docker Build & Push
         inputs:
